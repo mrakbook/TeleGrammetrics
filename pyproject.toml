@@ -1,0 +1,77 @@
+[build-system]
+requires = ["hatchling>=1.21"]
+build-backend = "hatchling.build"
+
+[project]
+name = "telegrammetrics"
+version = "0.1.0"
+description = "TeleGrammetrics: Telegram Bot Analytics & Moderation Library (logging, analytics, filters)"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Your Name", email = "you@example.com" }]
+keywords = [
+  "telegram",
+  "bot",
+  "analytics",
+  "moderation",
+  "logging",
+  "telegram-bot",
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Internet",
+  "Topic :: Communications :: Chat",
+  "Topic :: Software Development :: Libraries",
+]
+
+dependencies = ["python-telegram-bot>=20.0", "mariadb>=1.1.0"]
+
+[project.optional-dependencies]
+telethon = ["Telethon>=1.30.0"]
+
+mongo = ["pymongo>=4.6"]
+
+dev = [
+  "pytest>=7.4",
+  "pytest-asyncio>=0.23",
+  "mypy>=1.8",
+  "ruff>=0.5.0",
+  "black>=24.3.0",
+  "types-setuptools",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/telegrammetrics"]
+
+[tool.mypy]
+python_version = "3.9"
+warn_unused_configs = true
+disallow_untyped_defs = true
+no_implicit_optional = true
+check_untyped_defs = true
+ignore_missing_imports = true
+
+[tool.black]
+line-length = 100
+target-version = ["py39"]
+skip-string-normalization = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+select = ["E", "F", "I", "N", "UP", "B"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
